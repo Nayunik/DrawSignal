@@ -29,9 +29,9 @@ namespace scoslab2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,7 +56,6 @@ namespace scoslab2
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxEndX = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ToolStripMenuItemInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemPlus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemMinus = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemMainSize = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +63,7 @@ namespace scoslab2
             this.toolStripMenuItemRight = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUp = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUnder = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -81,7 +81,7 @@ namespace scoslab2
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(2, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(842, 313);
+            this.panel1.Size = new System.Drawing.Size(842, 363);
             this.panel1.TabIndex = 1;
             // 
             // chart1
@@ -89,18 +89,18 @@ namespace scoslab2
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea7.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chart1.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chart1.Series.Add(series7);
-            this.chart1.Size = new System.Drawing.Size(702, 305);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(702, 355);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
             // 
@@ -113,7 +113,7 @@ namespace scoslab2
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Location = new System.Drawing.Point(709, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(127, 326);
+            this.panel2.Size = new System.Drawing.Size(127, 355);
             this.panel2.TabIndex = 9;
             // 
             // panel4
@@ -334,12 +334,6 @@ namespace scoslab2
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // ToolStripMenuItemInfo
-            // 
-            this.ToolStripMenuItemInfo.Name = "ToolStripMenuItemInfo";
-            this.ToolStripMenuItemInfo.Size = new System.Drawing.Size(51, 20);
-            this.ToolStripMenuItemInfo.Text = "Инфо";
-            // 
             // toolStripMenuItemPlus
             // 
             this.toolStripMenuItemPlus.Name = "toolStripMenuItemPlus";
@@ -389,12 +383,18 @@ namespace scoslab2
             this.ToolStripMenuItemUnder.Text = "Вниз";
             this.ToolStripMenuItemUnder.Click += new System.EventHandler(this.ToolStripMenuItemUnder_Click);
             // 
+            // ToolStripMenuItemInfo
+            // 
+            this.ToolStripMenuItemInfo.Name = "ToolStripMenuItemInfo";
+            this.ToolStripMenuItemInfo.Size = new System.Drawing.Size(51, 20);
+            this.ToolStripMenuItemInfo.Text = "Инфо";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(844, 341);
+            this.ClientSize = new System.Drawing.Size(844, 391);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
