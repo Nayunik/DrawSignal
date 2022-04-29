@@ -29,9 +29,9 @@ namespace scoslab2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -89,17 +89,17 @@ namespace scoslab2
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart1.Legends.Add(legend7);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chart1.Series.Add(series7);
             this.chart1.Size = new System.Drawing.Size(702, 305);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -352,36 +352,42 @@ namespace scoslab2
             this.toolStripMenuItemMinus.Name = "toolStripMenuItemMinus";
             this.toolStripMenuItemMinus.Size = new System.Drawing.Size(29, 20);
             this.toolStripMenuItemMinus.Text = "--";
+            this.toolStripMenuItemMinus.Click += new System.EventHandler(this.toolStripMenuItemMinus_Click);
             // 
             // ToolStripMenuItemMainSize
             // 
             this.ToolStripMenuItemMainSize.Name = "ToolStripMenuItemMainSize";
             this.ToolStripMenuItemMainSize.Size = new System.Drawing.Size(76, 20);
             this.ToolStripMenuItemMainSize.Text = "Исходный";
+            this.ToolStripMenuItemMainSize.Click += new System.EventHandler(this.ToolStripMenuItemMainSize_Click);
             // 
             // toolStripMenuItemLeft
             // 
             this.toolStripMenuItemLeft.Name = "toolStripMenuItemLeft";
             this.toolStripMenuItemLeft.Size = new System.Drawing.Size(32, 20);
             this.toolStripMenuItemLeft.Text = "<-";
+            this.toolStripMenuItemLeft.Click += new System.EventHandler(this.toolStripMenuItemLeft_Click);
             // 
             // toolStripMenuItemRight
             // 
             this.toolStripMenuItemRight.Name = "toolStripMenuItemRight";
             this.toolStripMenuItemRight.Size = new System.Drawing.Size(32, 20);
             this.toolStripMenuItemRight.Text = "->";
+            this.toolStripMenuItemRight.Click += new System.EventHandler(this.toolStripMenuItemRight_Click);
             // 
             // ToolStripMenuItemUp
             // 
             this.ToolStripMenuItemUp.Name = "ToolStripMenuItemUp";
             this.ToolStripMenuItemUp.Size = new System.Drawing.Size(51, 20);
             this.ToolStripMenuItemUp.Text = "Вверх";
+            this.ToolStripMenuItemUp.Click += new System.EventHandler(this.ToolStripMenuItemUp_Click);
             // 
             // ToolStripMenuItemUnder
             // 
             this.ToolStripMenuItemUnder.Name = "ToolStripMenuItemUnder";
             this.ToolStripMenuItemUnder.Size = new System.Drawing.Size(45, 20);
             this.ToolStripMenuItemUnder.Text = "Вниз";
+            this.ToolStripMenuItemUnder.Click += new System.EventHandler(this.ToolStripMenuItemUnder_Click);
             // 
             // Form1
             // 
