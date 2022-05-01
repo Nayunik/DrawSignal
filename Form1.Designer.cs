@@ -29,9 +29,12 @@ namespace scoslab2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -65,19 +68,19 @@ namespace scoslab2
             this.ToolStripMenuItemUp = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUnder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.chart1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(2, 27);
@@ -90,17 +93,17 @@ namespace scoslab2
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(702, 355);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -109,6 +112,7 @@ namespace scoslab2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.buttonDPF);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.buttonDraw);
@@ -130,6 +134,7 @@ namespace scoslab2
             this.buttonDPF.Text = "ДПФ";
             this.buttonDPF.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonDPF.UseVisualStyleBackColor = true;
+            this.buttonDPF.Click += new System.EventHandler(this.buttonDPF_Click);
             // 
             // panel4
             // 
@@ -353,64 +358,98 @@ namespace scoslab2
             // toolStripMenuItemPlus
             // 
             this.toolStripMenuItemPlus.Name = "toolStripMenuItemPlus";
-            this.toolStripMenuItemPlus.Size = new System.Drawing.Size(27, 20);
+            this.toolStripMenuItemPlus.Size = new System.Drawing.Size(29, 21);
             this.toolStripMenuItemPlus.Text = "+";
             this.toolStripMenuItemPlus.Click += new System.EventHandler(this.toolStripMenuItemPlus_Click);
             // 
             // toolStripMenuItemMinus
             // 
             this.toolStripMenuItemMinus.Name = "toolStripMenuItemMinus";
-            this.toolStripMenuItemMinus.Size = new System.Drawing.Size(29, 20);
+            this.toolStripMenuItemMinus.Size = new System.Drawing.Size(28, 21);
             this.toolStripMenuItemMinus.Text = "--";
             this.toolStripMenuItemMinus.Click += new System.EventHandler(this.toolStripMenuItemMinus_Click);
             // 
             // ToolStripMenuItemMainSize
             // 
             this.ToolStripMenuItemMainSize.Name = "ToolStripMenuItemMainSize";
-            this.ToolStripMenuItemMainSize.Size = new System.Drawing.Size(76, 20);
+            this.ToolStripMenuItemMainSize.Size = new System.Drawing.Size(86, 21);
             this.ToolStripMenuItemMainSize.Text = "Исходный";
             this.ToolStripMenuItemMainSize.Click += new System.EventHandler(this.ToolStripMenuItemMainSize_Click);
             // 
             // toolStripMenuItemLeft
             // 
             this.toolStripMenuItemLeft.Name = "toolStripMenuItemLeft";
-            this.toolStripMenuItemLeft.Size = new System.Drawing.Size(32, 20);
+            this.toolStripMenuItemLeft.Size = new System.Drawing.Size(32, 21);
             this.toolStripMenuItemLeft.Text = "<-";
             this.toolStripMenuItemLeft.Click += new System.EventHandler(this.toolStripMenuItemLeft_Click);
             // 
             // toolStripMenuItemRight
             // 
             this.toolStripMenuItemRight.Name = "toolStripMenuItemRight";
-            this.toolStripMenuItemRight.Size = new System.Drawing.Size(32, 20);
+            this.toolStripMenuItemRight.Size = new System.Drawing.Size(32, 21);
             this.toolStripMenuItemRight.Text = "->";
             this.toolStripMenuItemRight.Click += new System.EventHandler(this.toolStripMenuItemRight_Click);
             // 
             // ToolStripMenuItemUp
             // 
             this.ToolStripMenuItemUp.Name = "ToolStripMenuItemUp";
-            this.ToolStripMenuItemUp.Size = new System.Drawing.Size(51, 20);
+            this.ToolStripMenuItemUp.Size = new System.Drawing.Size(56, 21);
             this.ToolStripMenuItemUp.Text = "Вверх";
             this.ToolStripMenuItemUp.Click += new System.EventHandler(this.ToolStripMenuItemUp_Click);
             // 
             // ToolStripMenuItemUnder
             // 
             this.ToolStripMenuItemUnder.Name = "ToolStripMenuItemUnder";
-            this.ToolStripMenuItemUnder.Size = new System.Drawing.Size(45, 20);
+            this.ToolStripMenuItemUnder.Size = new System.Drawing.Size(49, 21);
             this.ToolStripMenuItemUnder.Text = "Вниз";
             this.ToolStripMenuItemUnder.Click += new System.EventHandler(this.ToolStripMenuItemUnder_Click);
             // 
             // ToolStripMenuItemInfo
             // 
             this.ToolStripMenuItemInfo.Name = "ToolStripMenuItemInfo";
-            this.ToolStripMenuItemInfo.Size = new System.Drawing.Size(51, 20);
+            this.ToolStripMenuItemInfo.Size = new System.Drawing.Size(61, 21);
             this.ToolStripMenuItemInfo.Text = "Инфо";
+            // 
+            // chart2
+            // 
+            this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart2.Legends.Add(legend4);
+            this.chart2.Location = new System.Drawing.Point(2, 391);
+            this.chart2.Name = "chart2";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart2.Series.Add(series4);
+            this.chart2.Size = new System.Drawing.Size(702, 355);
+            this.chart2.TabIndex = 12;
+            this.chart2.Text = "chart2";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Location = new System.Drawing.Point(20, 338);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "ДПФ";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(844, 391);
+            this.ClientSize = new System.Drawing.Size(844, 755);
+            this.Controls.Add(this.chart2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -430,6 +469,7 @@ namespace scoslab2
             this.panel3.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,6 +510,8 @@ namespace scoslab2
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUnder;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemInfo;
         private System.Windows.Forms.Button buttonDPF;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -592,5 +592,171 @@ namespace scoslab2
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
+
+        private void buttonDPF_Click(object sender, EventArgs e)
+        {
+            if (chart2.Series.Count != 0)
+            {
+                chart2.Series[0].Points.Clear();
+            }
+            else
+            {
+                chart2.Series.Add("Series1");
+                chart2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            }
+
+            double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, sizeOfSegmentY, step,
+                amplitude1, amplitude2, frequency1, frequency2;
+
+            
+
+            amplitude1 = Convert.ToDouble(textBoxA1.Text);
+            amplitude2 = Convert.ToDouble(textBoxA2.Text);
+            frequency1 = Convert.ToDouble(textBoxF1.Text);
+            frequency2 = Convert.ToDouble(textBoxF2.Text);
+
+            startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
+            endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
+            startOfSegmentY = Convert.ToDouble(textBoxStartY.Text);
+            endOfSegmentY = Convert.ToDouble(textBoxEndY.Text);
+
+            sizeOfSegmentX = endOfSegmentX - startOfSegmentX;
+            sizeOfSegmentY = endOfSegmentY - startOfSegmentY;
+
+            int t = 0;
+
+            List<List<double>> masCoordinates = new List<List<double>>();
+            List<double> row = new List<double>();
+
+            List<List<double>> masIN = new List<List<double>>();
+            List<double> masOUT = new List<double>();
+
+            step = sizeOfSegmentX / 100.0;
+
+            for (double x = 0; x < 100; x += 1)
+            {
+
+                masIN.Add(new List<double>());
+                masIN[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                masIN[t].Add(0.0);
+
+                t++;
+            }
+
+            /*FormDPF formDPF = new FormDPF();
+            formDPF.Show();*/
+
+
+            List<double> masOUT1 = new List<double>();
+            List<double> masOUT2 = new List<double>();
+            for (double k = 0; k < 100; k +=1)
+            {
+                masOUT = ClassDFT.FFT(masIN, k);
+                masOUT1.Add(masOUT[0] / 10);
+                masOUT2.Add(masOUT[1] / 10);
+
+            }
+
+
+            /*chart1.ChartAreas[0].AxisX.Minimum = startOfSegmentX;
+            chart1.ChartAreas[0].AxisX.Maximum = endOfSegmentX;
+            chart1.ChartAreas[0].AxisY.Minimum = startOfSegmentY;
+            chart1.ChartAreas[0].AxisY.Maximum = endOfSegmentY;*/
+
+
+            int counter = 0;
+
+            foreach (double coordinate in masOUT1)
+            {
+                
+                chart2.Series[0].Points.AddXY(counter, coordinate);
+                counter++;
+            }
+
+
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (chart2.Series.Count != 0)
+            {
+                chart2.Series[0].Points.Clear();
+            }
+            else
+            {
+                chart2.Series.Add("Series1");
+                chart2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            }
+
+            double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, sizeOfSegmentY, step,
+                amplitude1, amplitude2, frequency1, frequency2;
+
+
+
+            amplitude1 = Convert.ToDouble(textBoxA1.Text);
+            amplitude2 = Convert.ToDouble(textBoxA2.Text);
+            frequency1 = Convert.ToDouble(textBoxF1.Text);
+            frequency2 = Convert.ToDouble(textBoxF2.Text);
+
+            startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
+            endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
+            startOfSegmentY = Convert.ToDouble(textBoxStartY.Text);
+            endOfSegmentY = Convert.ToDouble(textBoxEndY.Text);
+
+            sizeOfSegmentX = endOfSegmentX - startOfSegmentX;
+            sizeOfSegmentY = endOfSegmentY - startOfSegmentY;
+
+            int t = 0;
+
+            List<List<double>> masCoordinates = new List<List<double>>();
+            List<double> row = new List<double>();
+
+            List<List<double>> masIN = new List<List<double>>();
+            List<double> masOUT = new List<double>();
+
+            step = sizeOfSegmentX / 100.0;
+
+            for (double x = 0; x < 100; x += 1)
+            {
+
+                masIN.Add(new List<double>());
+                masIN[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                masIN[t].Add(0.0);
+
+                t++;
+            }
+
+            /*FormDPF formDPF = new FormDPF();
+            formDPF.Show();*/
+
+
+            List<double> masOUT1 = new List<double>();
+            List<double> masOUT2 = new List<double>();
+            for (double k = 0; k < 100; k += 1)
+            {
+                masOUT = ClassDFT.IFFT(masIN, k);
+                masOUT1.Add(masOUT[0] / 10);
+                masOUT2.Add(masOUT[1] / 10);
+
+            }
+
+
+            /*chart1.ChartAreas[0].AxisX.Minimum = startOfSegmentX;
+            chart1.ChartAreas[0].AxisX.Maximum = endOfSegmentX;
+            chart1.ChartAreas[0].AxisY.Minimum = startOfSegmentY;
+            chart1.ChartAreas[0].AxisY.Maximum = endOfSegmentY;*/
+
+
+            int counter = 0;
+
+            foreach (double coordinate in masOUT1)
+            {
+
+                chart2.Series[0].Points.AddXY(counter, coordinate);
+                counter++;
+            }
+
+        }
     }
 }
