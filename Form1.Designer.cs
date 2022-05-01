@@ -29,12 +29,13 @@ namespace scoslab2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonDPF = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -89,17 +90,17 @@ namespace scoslab2
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(702, 355);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -108,6 +109,7 @@ namespace scoslab2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel2.Controls.Add(this.buttonDPF);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.buttonDraw);
             this.panel2.Controls.Add(this.panel3);
@@ -115,6 +117,19 @@ namespace scoslab2
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(127, 355);
             this.panel2.TabIndex = 9;
+            // 
+            // buttonDPF
+            // 
+            this.buttonDPF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDPF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDPF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDPF.Location = new System.Drawing.Point(20, 309);
+            this.buttonDPF.Name = "buttonDPF";
+            this.buttonDPF.Size = new System.Drawing.Size(86, 23);
+            this.buttonDPF.TabIndex = 13;
+            this.buttonDPF.Text = "ДПФ";
+            this.buttonDPF.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonDPF.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -319,6 +334,7 @@ namespace scoslab2
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemPlus,
             this.toolStripMenuItemMinus,
@@ -330,7 +346,7 @@ namespace scoslab2
             this.ToolStripMenuItemInfo});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(844, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(844, 25);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -400,7 +416,7 @@ namespace scoslab2
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(860, 380);
+            this.MinimumSize = new System.Drawing.Size(860, 430);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Определение спектральных характеристик сигнала";
@@ -453,6 +469,7 @@ namespace scoslab2
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUp;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUnder;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemInfo;
+        private System.Windows.Forms.Button buttonDPF;
     }
 }
 

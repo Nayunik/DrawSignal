@@ -77,7 +77,7 @@ namespace scoslab2
                 }
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
 
@@ -142,7 +142,7 @@ namespace scoslab2
 
 
                 // построение массива точек
-                for (double x = startOfSegmentX + startOfSegmentX * 0.1; x < sizeOfSegmentX; x += step)
+                for (double x = startOfSegmentX + startOfSegmentX * 0.1; x < endOfSegmentX; x += step)
                 {
                    
                     masCoordinates.Add(new List<double>());
@@ -161,9 +161,10 @@ namespace scoslab2
                     chart1.Series[0].Points.AddXY(coordinate[0], coordinate[1]);
 
                 }
+
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
 
@@ -238,7 +239,7 @@ namespace scoslab2
                 }
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
 
@@ -301,7 +302,7 @@ namespace scoslab2
                 }
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
 
@@ -370,7 +371,7 @@ namespace scoslab2
                 }
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
 
@@ -441,7 +442,7 @@ namespace scoslab2
                 }
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
 
         }
@@ -515,7 +516,7 @@ namespace scoslab2
                 }
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
 
@@ -588,7 +589,7 @@ namespace scoslab2
                 }
                 chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
-                chart1.ChartAreas[0].AxisY.Title = "Частота, Вт";
+                chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
         }
     }
