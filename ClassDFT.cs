@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MathNet.Numerics;
+using MathNet.Numerics.IntegralTransforms;
+
+using System.Numerics;
 
 namespace scoslab2
 {
@@ -15,14 +18,13 @@ namespace scoslab2
         {
             List<double> masComplex = new List<double>();
 
-            double re = 0.0, im = 0.0, a1, a2, b1, b2, arg;
+            double re = 0.0, im = 0.0, xn, a2, b1, b2, arg;
             int n = 0;
             int lenMas = mas.Count;
 
             foreach (List<double> complex in mas)
             {
-                a1 = complex[0];
-                b1 = complex[1];
+                xn = complex[0];
 
                 arg = 2 * Math.PI * k * n / lenMas;
                 n++;
@@ -30,8 +32,14 @@ namespace scoslab2
                 a2 = Math.Cos(arg);
                 b2 = Math.Sin(arg);
 
-                re += (a1*a2 - b1*b2);
-                im -= (a1 * b2 + b1 * a2);
+                // xn*(cos(arg) - i*sin(arg))
+
+                re += xn * a2;
+                im -= xn * b2;
+
+                /*re += (a1 * a2 - b1 * b2);
+                im -= (a1 * b2 + b1 * a2);*/
+
 
             }
 
@@ -40,19 +48,25 @@ namespace scoslab2
 
             return masComplex;
         }
-
-        public static List<double> IFFT(List<List<double>> mas, double k)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mas1">массив действительных частей комплексного числа</param>
+        /// <param name="mas2">массив мнимых частей комплексного числа</param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static List<double> IFFT(List<double> mas1, List<double> mas2, double k)
         {
             List<double> masComplex = new List<double>();
 
             double re = 0.0, im = 0.0, a1, a2, b1, b2, arg;
             int n = 0;
-            int lenMas = mas.Count;
+            int lenMas = mas1.Count;
 
-            foreach (List<double> complex in mas)
+            for (int i = 0; i < lenMas; i++)
             {
-                a1 = complex[0];
-                b1 = complex[1];
+                a1 = mas1[i];
+                b1 = mas2[i];
 
                 arg = 2 * Math.PI * k * n / lenMas;
                 n++;

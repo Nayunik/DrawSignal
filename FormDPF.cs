@@ -18,7 +18,7 @@ namespace scoslab2
             InitializeComponent();
         }
 
-        private void buttonDraw_Click(object sender, EventArgs e)
+        public void buttonDraw_Click(object sender, EventArgs e)
         {
 
             //ClassDFT.fft();
