@@ -44,7 +44,7 @@ namespace scoslab2
                     chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
                 }
 
-                double startOfSegmentX = -5, endOfSegmentX = 5, startOfSegmentY = -5, endOfSegmentY = 5, sizeOfSegmentX, step,
+                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, step,
                 amplitude1, amplitude2, frequency1, frequency2;
 
                 amplitude1 = Convert.ToDouble(textBoxA1.Text);
@@ -66,6 +66,8 @@ namespace scoslab2
                 // Присвоение диапазона сигнала
                 globalSignal.startOfCoordinateX = startOfSegmentX;
                 globalSignal.endOfCoordinateX = endOfSegmentX;
+                globalSignal.startOfCoordinateY = startOfSegmentY;
+                globalSignal.endOfCoordinateY = endOfSegmentY;
 
                 sizeOfSegmentX = endOfSegmentX - startOfSegmentX;
                 step = sizeOfSegmentX / 100.0;
@@ -103,7 +105,6 @@ namespace scoslab2
         private void toolStripMenuItemPlus_Click(object sender, EventArgs e)
         {
 
-            // Условие на текстбоксы
             if (textBoxA1.Text != "" && textBoxA2.Text != "" && textBoxEndX.Text != "" && textBoxStartX.Text != "" && textBoxEndY.Text != "" && textBoxStartY.Text != "")
             {
                 if (chart1.Series.Count != 0)
@@ -116,13 +117,7 @@ namespace scoslab2
                     chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
                 }
 
-                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, step,
-                amplitude1, amplitude2, frequency1, frequency2;
-
-                amplitude1 = Convert.ToDouble(textBoxA1.Text);
-                amplitude2 = Convert.ToDouble(textBoxA2.Text);
-                frequency1 = Convert.ToDouble(textBoxF1.Text);
-                frequency2 = Convert.ToDouble(textBoxF2.Text);
+                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, step;
 
                 startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
                 endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
@@ -144,17 +139,15 @@ namespace scoslab2
                 List<List<double>> masCoordinates = new List<List<double>>();
 
                                
-                sizeOfSegmentX = endOfSegmentX - startOfSegmentX;
+                sizeOfSegmentX = globalSignal.endOfCoordinateX - globalSignal.startOfCoordinateX;
                 step = sizeOfSegmentX / 100.0;
 
-
-                // построение массива точек
-                for (double x = startOfSegmentX + startOfSegmentX * 0.1; x < endOfSegmentX; x += step)
+                                for (double x = globalSignal.startOfCoordinateX; x < globalSignal.endOfCoordinateX; x += step)
                 {
-                   
+
                     masCoordinates.Add(new List<double>());
                     masCoordinates[t].Add(x);
-                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, globalSignal.amplitude1, globalSignal.frequency1, globalSignal.amplitude2, globalSignal.frequency2));
                     t++;
                 }
 
@@ -169,7 +162,7 @@ namespace scoslab2
 
                 }
 
-                chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
+                chart1.Series[0].Name = globalSignal.amplitude1 + "*sin(2*Pi*" + globalSignal.frequency1 + "*x)*" + globalSignal.amplitude2 + "*sin(2*Pi*" + globalSignal.frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
@@ -177,16 +170,19 @@ namespace scoslab2
 
         private void toolStripMenuItemMinus_Click(object sender, EventArgs e)
         {
-            // Условие на текстбоксы
             if (textBoxA1.Text != "" && textBoxA2.Text != "" && textBoxEndX.Text != "" && textBoxStartX.Text != "" && textBoxEndY.Text != "" && textBoxStartY.Text != "")
             {
-                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, step,
-                amplitude1, amplitude2, frequency1, frequency2;
+                if (chart1.Series.Count != 0)
+                {
+                    chart1.Series[0].Points.Clear();
+                }
+                else
+                {
+                    chart1.Series.Add("Series1");
+                    chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                }
 
-                amplitude1 = Convert.ToDouble(textBoxA1.Text);
-                amplitude2 = Convert.ToDouble(textBoxA2.Text);
-                frequency1 = Convert.ToDouble(textBoxF1.Text);
-                frequency2 = Convert.ToDouble(textBoxF2.Text);
+                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, step;
 
                 startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
                 endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
@@ -203,34 +199,21 @@ namespace scoslab2
                 textBoxStartY.Text = "" + startOfSegmentY;
                 textBoxEndY.Text = "" + endOfSegmentY;
 
-                if (chart1.Series.Count != 0)
-                {
-                    chart1.Series[0].Points.Clear();
-                }
-                else
-                {
-                    chart1.Series.Add("Series1");
-                    chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                }
-
-
                 int t = 0;
 
                 List<List<double>> masCoordinates = new List<List<double>>();
-                List<double> row = new List<double>();
 
 
-                sizeOfSegmentX = endOfSegmentX - startOfSegmentX;
+                sizeOfSegmentX = globalSignal.endOfCoordinateX - globalSignal.startOfCoordinateX;
                 step = sizeOfSegmentX / 100.0;
 
 
-                // построение массива точек
-                for (double x = startOfSegmentX; x < endOfSegmentX; x += step)
+                for (double x = globalSignal.startOfCoordinateX; x < globalSignal.endOfCoordinateX; x += step)
                 {
 
                     masCoordinates.Add(new List<double>());
                     masCoordinates[t].Add(x);
-                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, globalSignal.amplitude1, globalSignal.frequency1, globalSignal.amplitude2, globalSignal.frequency2));
                     t++;
                 }
 
@@ -244,7 +227,8 @@ namespace scoslab2
                     chart1.Series[0].Points.AddXY(coordinate[0], coordinate[1]);
 
                 }
-                chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
+
+                chart1.Series[0].Name = globalSignal.amplitude1 + "*sin(2*Pi*" + globalSignal.frequency1 + "*x)*" + globalSignal.amplitude2 + "*sin(2*Pi*" + globalSignal.frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
@@ -264,49 +248,42 @@ namespace scoslab2
                     chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
                 }
 
-                double startOfSegmentX = -5, endOfSegmentX = 7, startOfSegmentY = -5, endOfSegmentY = 5, sizeOfSegmentX, step,
-                amplitude1, amplitude2, frequency1, frequency2;
+                double sizeOfSegmentX, step;
                 int t = 0;
 
                 List<List<double>> masCoordinates = new List<List<double>>();
-                List<double> row = new List<double>();
 
-                amplitude1 = Convert.ToDouble(textBoxA1.Text);
-                amplitude2 = Convert.ToDouble(textBoxA2.Text);
-                frequency1 = Convert.ToDouble(textBoxF1.Text);
-                frequency2 = Convert.ToDouble(textBoxF2.Text);
-
-                textBoxStartX.Text = "" + startOfSegmentX;
-                textBoxEndX.Text = "" + endOfSegmentX;
-                textBoxStartY.Text = "" + startOfSegmentY;
-                textBoxEndY.Text = "" + endOfSegmentY;
+                textBoxStartX.Text = "" + globalSignal.startOfCoordinateX;
+                textBoxEndX.Text = "" + globalSignal.endOfCoordinateX;
+                textBoxStartY.Text = "" + globalSignal.startOfCoordinateY;
+                textBoxEndY.Text = "" + globalSignal.endOfCoordinateY;
 
 
-                sizeOfSegmentX = endOfSegmentX - startOfSegmentX;
+                sizeOfSegmentX = globalSignal.endOfCoordinateX - globalSignal.startOfCoordinateX;
                 step = sizeOfSegmentX / 100.0;
 
 
                 // построение массива точек
-                for (double x = startOfSegmentX; x < sizeOfSegmentX; x += step)
+                for (double x = globalSignal.startOfCoordinateX; x < globalSignal.endOfCoordinateX; x += step)
                 {
 
                     masCoordinates.Add(new List<double>());
                     masCoordinates[t].Add(x);
-                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, globalSignal.amplitude1, globalSignal.frequency1, globalSignal.amplitude2, globalSignal.frequency2));
                     t++;
                 }
 
-                chart1.ChartAreas[0].AxisX.Minimum = startOfSegmentX;
-                chart1.ChartAreas[0].AxisX.Maximum = endOfSegmentX;
-                chart1.ChartAreas[0].AxisY.Minimum = startOfSegmentY;
-                chart1.ChartAreas[0].AxisY.Maximum = endOfSegmentY;
+                chart1.ChartAreas[0].AxisX.Minimum = globalSignal.startOfCoordinateX;
+                chart1.ChartAreas[0].AxisX.Maximum = globalSignal.endOfCoordinateX;
+                chart1.ChartAreas[0].AxisY.Minimum = globalSignal.startOfCoordinateY;
+                chart1.ChartAreas[0].AxisY.Maximum = globalSignal.endOfCoordinateY;
 
                 foreach (List<double> coordinate in masCoordinates)
                 {
                     chart1.Series[0].Points.AddXY(coordinate[0], coordinate[1]);
 
                 }
-                chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
+                chart1.Series[0].Name = globalSignal.amplitude1 + "*sin(2*Pi*" + globalSignal.frequency1 + "*x)*" + globalSignal.amplitude2 + "*sin(2*Pi*" + globalSignal.frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
@@ -316,13 +293,17 @@ namespace scoslab2
         {
             if (textBoxA1.Text != "" && textBoxA2.Text != "" && textBoxEndX.Text != "" && textBoxStartX.Text != "" && textBoxEndY.Text != "" && textBoxStartY.Text != "")
             {
-                double startOfSegmentX, endOfSegmentX, sizeOfSegmentX, step,
-                amplitude1, amplitude2, frequency1, frequency2;
+                if (chart1.Series.Count != 0)
+                {
+                    chart1.Series[0].Points.Clear();
+                }
+                else
+                {
+                    chart1.Series.Add("Series1");
+                    chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                }
 
-                amplitude1 = Convert.ToDouble(textBoxA1.Text);
-                amplitude2 = Convert.ToDouble(textBoxA2.Text);
-                frequency1 = Convert.ToDouble(textBoxF1.Text);
-                frequency2 = Convert.ToDouble(textBoxF2.Text);
+                double startOfSegmentX, endOfSegmentX, sizeOfSegmentX, step;
 
                 startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
                 endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
@@ -337,33 +318,21 @@ namespace scoslab2
                 textBoxEndX.Text = "" + endOfSegmentX;
 
 
-                if (chart1.Series.Count != 0)
-                {
-                    chart1.Series[0].Points.Clear();
-                }
-                else
-                {
-                    chart1.Series.Add("Series1");
-                    chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                }
-
-
                 int t = 0;
 
                 List<List<double>> masCoordinates = new List<List<double>>();
-                List<double> row = new List<double>();
 
 
                 step = sizeOfSegmentX / 100.0;
 
 
                 // построение массива точек
-                for (double x = startOfSegmentX; x < endOfSegmentX; x += step)
+                for (double x = globalSignal.startOfCoordinateX; x < globalSignal.endOfCoordinateX; x += step)
                 {
 
                     masCoordinates.Add(new List<double>());
                     masCoordinates[t].Add(x);
-                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, globalSignal.amplitude1, globalSignal.frequency1, globalSignal.amplitude2, globalSignal.frequency2));
                     t++;
                 }
 
@@ -375,7 +344,7 @@ namespace scoslab2
                     chart1.Series[0].Points.AddXY(coordinate[0], coordinate[1]);
 
                 }
-                chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
+                chart1.Series[0].Name = globalSignal.amplitude1 + "*sin(2*Pi*" + globalSignal.frequency1 + "*x)*" + globalSignal.amplitude2 + "*sin(2*Pi*" + globalSignal.frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
@@ -386,13 +355,8 @@ namespace scoslab2
 
             if (textBoxA1.Text != "" && textBoxA2.Text != "" && textBoxEndX.Text != "" && textBoxStartX.Text != "" && textBoxEndY.Text != "" && textBoxStartY.Text != "")
             {
-                double startOfSegmentX, endOfSegmentX, sizeOfSegmentX, step,
-                amplitude1, amplitude2, frequency1, frequency2;
+                double startOfSegmentX, endOfSegmentX, sizeOfSegmentX, step;
 
-                amplitude1 = Convert.ToDouble(textBoxA1.Text);
-                amplitude2 = Convert.ToDouble(textBoxA2.Text);
-                frequency1 = Convert.ToDouble(textBoxF1.Text);
-                frequency2 = Convert.ToDouble(textBoxF2.Text);
 
                 startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
                 endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
@@ -429,12 +393,12 @@ namespace scoslab2
 
 
                 // построение массива точек
-                for (double x = startOfSegmentX; x < endOfSegmentX; x += step)
+                for (double x = globalSignal.startOfCoordinateX; x < globalSignal.endOfCoordinateX; x += step)
                 {
 
                     masCoordinates.Add(new List<double>());
                     masCoordinates[t].Add(x);
-                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, globalSignal.amplitude1, globalSignal.frequency1, globalSignal.amplitude2, globalSignal.frequency2));
                     t++;
                 }
 
@@ -446,7 +410,7 @@ namespace scoslab2
                     chart1.Series[0].Points.AddXY(coordinate[0], coordinate[1]);
 
                 }
-                chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
+                chart1.Series[0].Name = globalSignal.amplitude1 + "*sin(2*Pi*" + globalSignal.frequency1 + "*x)*" + globalSignal.amplitude2 + "*sin(2*Pi*" + globalSignal.frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
@@ -457,13 +421,8 @@ namespace scoslab2
         {
             if (textBoxA1.Text != "" && textBoxA2.Text != "" && textBoxEndX.Text != "" && textBoxStartX.Text != "" && textBoxEndY.Text != "" && textBoxStartY.Text != "")
             {
-                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, sizeOfSegmentY, step,
-                amplitude1, amplitude2, frequency1, frequency2;
+                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, sizeOfSegmentY, step;
 
-                amplitude1 = Convert.ToDouble(textBoxA1.Text);
-                amplitude2 = Convert.ToDouble(textBoxA2.Text);
-                frequency1 = Convert.ToDouble(textBoxF1.Text);
-                frequency2 = Convert.ToDouble(textBoxF2.Text);
 
                 startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
                 endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
@@ -494,19 +453,17 @@ namespace scoslab2
                 int t = 0;
 
                 List<List<double>> masCoordinates = new List<List<double>>();
-                List<double> row = new List<double>();
-
 
                 step = sizeOfSegmentX / 100.0;
 
 
                 // построение массива точек
-                for (double x = startOfSegmentX; x < endOfSegmentX; x += step)
+                for (double x = globalSignal.startOfCoordinateX; x < globalSignal.endOfCoordinateX; x += step)
                 {
 
                     masCoordinates.Add(new List<double>());
                     masCoordinates[t].Add(x);
-                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, globalSignal.amplitude1, globalSignal.frequency1, globalSignal.amplitude2, globalSignal.frequency2));
                     t++;
                 }
 
@@ -520,7 +477,7 @@ namespace scoslab2
                     chart1.Series[0].Points.AddXY(coordinate[0], coordinate[1]);
 
                 }
-                chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
+                chart1.Series[0].Name = globalSignal.amplitude1 + "*sin(2*Pi*" + globalSignal.frequency1 + "*x)*" + globalSignal.amplitude2 + "*sin(2*Pi*" + globalSignal.frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
@@ -530,13 +487,8 @@ namespace scoslab2
         {
             if (textBoxA1.Text != "" && textBoxA2.Text != "" && textBoxEndX.Text != "" && textBoxStartX.Text != "" && textBoxEndY.Text != "" && textBoxStartY.Text != "")
             {
-                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, sizeOfSegmentY, step,
-                amplitude1, amplitude2, frequency1, frequency2;
+                double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX, sizeOfSegmentY, step;
 
-                amplitude1 = Convert.ToDouble(textBoxA1.Text);
-                amplitude2 = Convert.ToDouble(textBoxA2.Text);
-                frequency1 = Convert.ToDouble(textBoxF1.Text);
-                frequency2 = Convert.ToDouble(textBoxF2.Text);
 
                 startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
                 endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
@@ -567,19 +519,18 @@ namespace scoslab2
                 int t = 0;
 
                 List<List<double>> masCoordinates = new List<List<double>>();
-                List<double> row = new List<double>();
 
 
                 step = sizeOfSegmentX / 100.0;
 
 
                 // построение массива точек
-                for (double x = startOfSegmentX; x < endOfSegmentX; x += step)
+                for (double x = globalSignal.startOfCoordinateX; x < globalSignal.endOfCoordinateX; x += step)
                 {
 
                     masCoordinates.Add(new List<double>());
                     masCoordinates[t].Add(x);
-                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
+                    masCoordinates[t].Add(CoordinateGraphicsFunc(x, globalSignal.amplitude1, globalSignal.frequency1, globalSignal.amplitude2, globalSignal.frequency2));
                     t++;
                 }
 
@@ -593,7 +544,7 @@ namespace scoslab2
                     chart1.Series[0].Points.AddXY(coordinate[0], coordinate[1]);
 
                 }
-                chart1.Series[0].Name = amplitude1 + "*sin(2*Pi*" + frequency1 + "*x)*" + amplitude2 + "*sin(2*Pi*" + frequency2 + "+x)";
+                chart1.Series[0].Name = globalSignal.amplitude1 + "*sin(2*Pi*" + globalSignal.frequency1 + "*x)*" + globalSignal.amplitude2 + "*sin(2*Pi*" + globalSignal.frequency2 + "+x)";
                 chart1.ChartAreas[0].AxisX.Title = "t, сек";
                 chart1.ChartAreas[0].AxisY.Title = "Частота, Гц";
             }
@@ -740,6 +691,11 @@ namespace scoslab2
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void ToolStripMenuItemInfo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Данная выполняет дискретнное преобразование Фурье,\r\nстроит графики амплитудного и фазового спектров,\r\nа также выполняет обратное преобразование Фурье.\r\nПрограмма написана:\r\nКорюкиным Данилом,\r\nстудентом гр. ИТ-1035119", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

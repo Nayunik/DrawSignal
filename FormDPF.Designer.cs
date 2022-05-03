@@ -29,8 +29,8 @@ namespace scoslab2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemPlus = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemMinus = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +39,6 @@ namespace scoslab2
             this.toolStripMenuItemRight = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUp = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUnder = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,8 +57,7 @@ namespace scoslab2
             this.toolStripMenuItemLeft,
             this.toolStripMenuItemRight,
             this.ToolStripMenuItemUp,
-            this.ToolStripMenuItemUnder,
-            this.ToolStripMenuItemInfo});
+            this.ToolStripMenuItemUnder});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -109,26 +107,20 @@ namespace scoslab2
             this.ToolStripMenuItemUnder.Size = new System.Drawing.Size(49, 21);
             this.ToolStripMenuItemUnder.Text = "Вниз";
             // 
-            // ToolStripMenuItemInfo
-            // 
-            this.ToolStripMenuItemInfo.Name = "ToolStripMenuItemInfo";
-            this.ToolStripMenuItemInfo.Size = new System.Drawing.Size(61, 21);
-            this.ToolStripMenuItemInfo.Text = "Инфо";
-            // 
             // chart1
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
             this.chart1.Location = new System.Drawing.Point(4, 4);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Name = "Series1";
+            this.chart1.Series.Add(series5);
             this.chart1.Size = new System.Drawing.Size(747, 315);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -191,7 +183,6 @@ namespace scoslab2
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRight;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUp;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUnder;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemInfo;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;

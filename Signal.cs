@@ -20,6 +20,11 @@ namespace scoslab2
         public double startOfCoordinateX;
         public double endOfCoordinateX;
 
+        //Переменные, задающие диапазон графика по оси Y
+
+        public double startOfCoordinateY;
+        public double endOfCoordinateY;
+
         //Частота дискретизации для ДПФ
 
         public double samplingFrequency;
