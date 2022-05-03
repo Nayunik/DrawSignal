@@ -32,8 +32,6 @@ namespace scoslab2
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -69,27 +67,27 @@ namespace scoslab2
             this.ToolStripMenuItemUp = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUnder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.textBoxFreq = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.chart1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(2, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(842, 410);
+            this.panel1.Size = new System.Drawing.Size(842, 482);
             this.panel1.TabIndex = 1;
             // 
             // chart1
@@ -108,7 +106,7 @@ namespace scoslab2
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(702, 402);
+            this.chart1.Size = new System.Drawing.Size(702, 474);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
             // 
@@ -117,22 +115,26 @@ namespace scoslab2
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.Menu;
             this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.textBoxFreq);
             this.panel2.Controls.Add(this.buttonDPF);
+            this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.buttonDraw);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Location = new System.Drawing.Point(709, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(127, 397);
+            this.panel2.Size = new System.Drawing.Size(127, 474);
             this.panel2.TabIndex = 9;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(20, 367);
+            this.button2.Location = new System.Drawing.Point(20, 296);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 23);
             this.button2.TabIndex = 15;
@@ -146,7 +148,7 @@ namespace scoslab2
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(20, 338);
+            this.button1.Location = new System.Drawing.Point(20, 414);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 23);
             this.button1.TabIndex = 14;
@@ -160,7 +162,7 @@ namespace scoslab2
             this.buttonDPF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDPF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDPF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonDPF.Location = new System.Drawing.Point(20, 309);
+            this.buttonDPF.Location = new System.Drawing.Point(20, 385);
             this.buttonDPF.Name = "buttonDPF";
             this.buttonDPF.Size = new System.Drawing.Size(86, 23);
             this.buttonDPF.TabIndex = 13;
@@ -443,27 +445,9 @@ namespace scoslab2
             this.ToolStripMenuItemInfo.Size = new System.Drawing.Size(61, 21);
             this.ToolStripMenuItemInfo.Text = "Инфо";
             // 
-            // chart2
-            // 
-            this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            this.chart2.Location = new System.Drawing.Point(2, 443);
-            this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Name = "Series1";
-            series2.YValuesPerPoint = 2;
-            this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(702, 303);
-            this.chart2.TabIndex = 12;
-            this.chart2.Text = "chart2";
-            // 
             // textBoxFreq
             // 
-            this.textBoxFreq.Location = new System.Drawing.Point(743, 498);
+            this.textBoxFreq.Location = new System.Drawing.Point(46, 359);
             this.textBoxFreq.Multiline = true;
             this.textBoxFreq.Name = "textBoxFreq";
             this.textBoxFreq.Size = new System.Drawing.Size(40, 20);
@@ -473,7 +457,7 @@ namespace scoslab2
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(708, 458);
+            this.label10.Location = new System.Drawing.Point(9, 322);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(112, 34);
             this.label10.TabIndex = 9;
@@ -485,7 +469,7 @@ namespace scoslab2
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(720, 539);
+            this.button3.Location = new System.Drawing.Point(20, 443);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(86, 23);
             this.button3.TabIndex = 16;
@@ -494,37 +478,18 @@ namespace scoslab2
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
-            // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(720, 581);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 23);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "ДПФ (A)";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(844, 755);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBoxFreq);
-            this.Controls.Add(this.chart2);
+            this.ClientSize = new System.Drawing.Size(844, 511);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(860, 430);
+            this.MinimumSize = new System.Drawing.Size(860, 550);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Определение спектральных характеристик сигнала";
@@ -532,13 +497,13 @@ namespace scoslab2
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -579,13 +544,11 @@ namespace scoslab2
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUnder;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemInfo;
         private System.Windows.Forms.Button buttonDPF;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBoxFreq;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
     }
 }
 

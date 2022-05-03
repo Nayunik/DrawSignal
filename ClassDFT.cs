@@ -93,17 +93,15 @@ namespace scoslab2
             List<double> masComplex = new List<double>();
 
             double re = 0.0, im = 0.0, a1, a2, b1, b2, arg;
-            int n = 0;
             int lenMas = mas1.Count;
 
-            for (int i = 0; i < lenMas; i++)
+            for (int n = 0; n < lenMas; n++)
             {
-                a1 = mas1[i];
-                b1 = mas2[i];
+                a1 = mas1[n];
+                b1 = mas2[n];
 
                 arg = 2 * Math.PI * k * n / lenMas;
-                n++;
-
+                
                 a2 = Math.Cos(arg);
                 b2 = Math.Sin(arg);
 
@@ -112,8 +110,8 @@ namespace scoslab2
 
             }
 
-            masComplex.Add(re/lenMas);
-            masComplex.Add(im/lenMas);
+            masComplex.Add(re / lenMas);
+            masComplex.Add(im / lenMas);
 
             return masComplex;
         }

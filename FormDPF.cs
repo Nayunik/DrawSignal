@@ -153,5 +153,74 @@ namespace scoslab2
             }
 
         }
+
+        public void ReverseFFT(Signal signal)
+        {
+
+            globalSignalDPF = signal;
+            if (chart1.Series.Count != 0)
+            {
+                chart1.Series[0].Points.Clear();
+            }
+            else
+            {
+                chart1.Series.Add("Series1");
+                chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            }
+
+            double sizeOfSegmentX;
+
+            sizeOfSegmentX = globalSignalDPF.endOfCoordinateX - globalSignalDPF.startOfCoordinateX;
+
+            List<double> masIN = new List<double>();
+
+            //                длина отрезка и частота дискретизации
+            for (double x = globalSignalDPF.startOfCoordinateX; x < globalSignalDPF.endOfCoordinateX; x += 1 / globalSignalDPF.samplingFrequency)
+            {
+
+
+                masIN.Add(CoordinateGraphicsFunc(x, globalSignalDPF.amplitude1, globalSignalDPF.frequency1, globalSignalDPF.amplitude2, globalSignalDPF.frequency2));
+
+            }
+
+
+            List<double> masOut = new List<double>();
+            List<double> masOutReverse = new List<double>();
+
+            int N = Convert.ToInt32(globalSignalDPF.samplingFrequency * sizeOfSegmentX);
+
+            globalSignalDPF.masRealNumberReverse = new List<double>();
+            globalSignalDPF.masImaginaryNumberReverse = new List<double>();
+
+            // подсчет комплексных чисел
+            for (int k = 0; k < N; k++)
+            {
+
+                masOut = ClassDFT.FFT0(masIN, k);
+                globalSignalDPF.masRealNumberReverse.Add(masOut[0]);
+                globalSignalDPF.masImaginaryNumberReverse.Add(masOut[1]);
+
+                
+            }
+
+            globalSignalDPF.masCoordinateXReverse = new List<double>();
+            globalSignalDPF.masCoordinateYReverse = new List<double>();
+
+            double coordinateX = globalSignalDPF.startOfCoordinateX, end = globalSignalDPF.endOfCoordinateX, step = sizeOfSegmentX / N;
+
+
+            for (int n = 0; n < N; n++)
+            {
+                masOutReverse = ClassDFT.IFFT(globalSignalDPF.masRealNumberReverse, globalSignalDPF.masImaginaryNumberReverse, n);
+                globalSignalDPF.masCoordinateXReverse.Add(masOutReverse[0]);
+                globalSignalDPF.masCoordinateYReverse.Add(masOutReverse[1]);
+
+                chart1.Series[0].Points.AddXY(coordinateX, globalSignalDPF.masCoordinateXReverse[n]);
+                coordinateX += step;
+            }
+
+            this.Text = "Восстановленный сигнал";
+            label4.Text += "\r\n" + globalSignalDPF.samplingFrequency;
+        }
     }
 }

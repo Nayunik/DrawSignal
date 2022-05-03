@@ -42,6 +42,16 @@ namespace scoslab2
         public List<double> masRealNumberPhaseSpectrum;
         public List<double> masImaginaryNumberPhaseSpectrum;
 
+        // Массивы содержащие действительную и мнимую часть комплексного числа для обратного преобразования
+
+        public List<double> masRealNumberReverse;
+        public List<double> masImaginaryNumberReverse;
+
+        // Массивы содержащие координаты после обратного преобразования
+
+        public List<double> masCoordinateXReverse;
+        public List<double> masCoordinateYReverse;
+
         public Signal()
         {
             masCoordinateSignalX = new List<double>();

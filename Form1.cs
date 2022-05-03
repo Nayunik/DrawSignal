@@ -605,8 +605,10 @@ namespace scoslab2
         /// <param name="e"></param>
         private void buttonDPF_Click(object sender, EventArgs e)
         {
-            globalSignal.samplingFrequency = Convert.ToDouble(textBoxFreq.Text); // samples - частота дискретизации
-                       
+            if (textBoxFreq.Text != "")
+            {
+                globalSignal.samplingFrequency = Convert.ToDouble(textBoxFreq.Text); // частота дискретизации 
+            }
             FormDPF formDPF = new FormDPF();
             formDPF.OpenForm(globalSignal, false);
             formDPF.Show();
@@ -628,109 +630,20 @@ namespace scoslab2
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-
-            if (chart2.Series.Count != 0)
+            if (textBoxFreq.Text != "")
             {
-                chart2.Series[0].Points.Clear();
+                globalSignal.samplingFrequency = Convert.ToDouble(textBoxFreq.Text); // частота дискретизации 
             }
-            else
-            {
-                chart2.Series.Add("Series1");
-                chart2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            }
+            FormDPF formDPF = new FormDPF();
+            formDPF.ReverseFFT(globalSignal);
+            formDPF.Show();
 
-            double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX,  step,
-                amplitude1, amplitude2, frequency1, frequency2;
-
-
-
-            amplitude1 = Convert.ToDouble(textBoxA1.Text);
-            amplitude2 = Convert.ToDouble(textBoxA2.Text);
-            frequency1 = Convert.ToDouble(textBoxF1.Text);
-            frequency2 = Convert.ToDouble(textBoxF2.Text);
-
-            startOfSegmentX = Convert.ToDouble(textBoxStartX.Text);
-            endOfSegmentX = Convert.ToDouble(textBoxEndX.Text);
-            startOfSegmentY = Convert.ToDouble(textBoxStartY.Text);
-            endOfSegmentY = Convert.ToDouble(textBoxEndY.Text);
-
-
-
-            sizeOfSegmentX = endOfSegmentX - startOfSegmentX;
-
-            step = sizeOfSegmentX / 100.0;
-
-            int t = 0;
-
-            List<List<double>> masXui = new List<List<double>>();
-            List<double> row = new List<double>();
-
-            List<List<double>> masObrIN = new List<List<double>>();
-            List<double> masObrOUT = new List<double>();
-            List<double> masObrOUT3 = new List<double>();
-
-
-
-            double samples; // samples - частота дискретизации 
-
-            samples = Convert.ToDouble(textBoxFreq.Text);
-
-
-
-            //                длина отрезка и частота дискретизации
-            for (double x = startOfSegmentX; x < endOfSegmentX; x += 1 / samples)
-            {
-
-                masObrIN.Add(new List<double>());
-                masObrIN[t].Add(CoordinateGraphicsFunc(x, amplitude1, frequency1, amplitude2, frequency2));
-
-                masObrIN[t].Add(0.0);
-
-                t++;
-            }
-
-            List<double> masOUT1 = new List<double>();
-            List<double> masOUT2 = new List<double>();
-
-            int N = Convert.ToInt32(samples * sizeOfSegmentX);
-
-
-
-            t = 0;
-            for (double k = 0; k < N; k += 1)
-            {
-                masObrOUT3 = ClassDFT.IFFT(masOUT1, masOUT2, k);
-                masXui.Add(new List<double>());
-                masXui[t].Add(masObrOUT3[0]);
-                masXui[t].Add(masObrOUT3[1]);
-                t++;
-
-            }
-            t = 0;
-            for (double x = startOfSegmentX; x < endOfSegmentX; x += step)
-            {
-                if(t < masXui.Count)
-                {
-
-                chart2.Series[0].Points.AddXY(x, masXui[t][0]);
-                }
-                t++;
-            }
-
-*/
-            t = 0;
-            chart2.ChartAreas[0].AxisX.Minimum = startOfSegmentX;
-            chart2.ChartAreas[0].AxisX.Maximum = endOfSegmentX;
-            chart2.ChartAreas[0].AxisY.Minimum = startOfSegmentY;
-            chart2.ChartAreas[0].AxisY.Maximum = endOfSegmentY;
-
-
+          
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (chart2.Series.Count != 0)
+           /* if (chart2.Series.Count != 0)
             {
                 chart2.Series[0].Points.Clear();
             }
@@ -739,7 +652,7 @@ namespace scoslab2
                 chart2.Series.Add("Series1");
                 chart2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             }
-
+*/
             double startOfSegmentX, endOfSegmentX, startOfSegmentY, endOfSegmentY, sizeOfSegmentX,
                 amplitude1, amplitude2, frequency1, frequency2;
 
@@ -809,7 +722,7 @@ namespace scoslab2
             {
                 double Ak = Math.Sqrt(Math.Pow(masOUT1[i], 2) + Math.Pow(masOUT2[i], 2));
 
-                chart2.Series[0].Points.AddXY(i, Ak);
+               // chart2.Series[0].Points.AddXY(i, Ak);
 
             }
         }
@@ -822,6 +735,11 @@ namespace scoslab2
                 chart1.Series[0].Name = "";
             }
             
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
