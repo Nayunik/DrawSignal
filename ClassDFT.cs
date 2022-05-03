@@ -13,12 +13,43 @@ namespace scoslab2
 {
     class ClassDFT
     {
-        
-        public static List<double> FFT (List<List<double>> mas, double k)
+
+        public static List<double> FFT0 (List<double> mas, double k)
         {
             List<double> masComplex = new List<double>();
 
-            double re = 0.0, im = 0.0, xn, a2, b1, b2, arg;
+            double re = 0.0, im = 0.0, xn, a2, b2, arg;
+            int lenMas = mas.Count;
+
+            for (int n = 0; n < lenMas; n++)
+            {
+                xn = mas[n];
+
+                arg = 2 * Math.PI * k * n / lenMas;
+                
+
+                a2 = Math.Cos(arg);
+                b2 = Math.Sin(arg);
+
+                // xn*(cos(arg) - i*sin(arg))
+
+                re += xn * a2;
+                im -= xn * b2;
+
+            }
+
+          
+            masComplex.Add(re);
+            masComplex.Add(im);
+
+            return masComplex;
+        }
+
+        public static List<double> FFT(List<List<double>> mas, double k)
+        {
+            List<double> masComplex = new List<double>();
+
+            double re = 0.0, im = 0.0, xn, a2, b1 = 0, b2, arg;
             int n = 0;
             int lenMas = mas.Count;
 
@@ -37,17 +68,19 @@ namespace scoslab2
                 re += xn * a2;
                 im -= xn * b2;
 
+                b1++;
                 /*re += (a1 * a2 - b1 * b2);
                 im -= (a1 * b2 + b1 * a2);*/
 
 
             }
 
-                masComplex.Add(re);
-                masComplex.Add(im);
+            masComplex.Add(re);
+            masComplex.Add(im);
 
             return masComplex;
         }
+
         /// <summary>
         /// 
         /// </summary>
